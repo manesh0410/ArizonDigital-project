@@ -1,183 +1,147 @@
-In this project, let's build a **Nxt Trendz - Cart Features** by applying the concepts we have learned till now.
+# Nxt Trendz - Product Details & Cart Features
 
-### Refer to the video below:
+This project implements a full-fledged e-commerce product page and cart system using React JS. It demonstrates routing, authentication, API integration, cart management using Context API, and responsive UI design.
 
-<br/>
-<div style="text-align: center;">
-  <video style="max-width:70%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12);outline:none;" loop="true" autoplay="autoplay" controls="controls" muted>
-    <source src="https://assets.ccbp.in/frontend/content/react-js/nxt-trendz-cart-features-output.mp4" type="video/mp4">
-  </video>
-</div>
-<br/>
+---
 
-### Design Files
+## 📁 Design Files
 
-<details>
-<summary>Click to view</summary>
+| Viewport Sizes | Links |
+|----------------|-------|
+| Small Devices (XS, SM) | [View Design](https://assets.ccbp.in/frontend/content/react-js/nxt-trendz-cart-features-sm-output-v0.png) |
+| Medium & Large Devices (MD, LG, XL) | [View Design](https://assets.ccbp.in/frontend/content/react-js/nxt-trendz-cart-features-lg-output.png) |
+| Empty Cart View | [Empty Cart](https://assets.ccbp.in/frontend/content/react-js/nxt-trendz-cart-features-empty-cart-view.png) |
 
-- [Extra Small (Size < 576px) and Small (Size >= 576px)](https://assets.ccbp.in/frontend/content/react-js/nxt-trendz-cart-features-sm-output-v0.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px)](https://assets.ccbp.in/frontend/content/react-js/nxt-trendz-cart-features-lg-output.png)
+---
 
-</details>
+## ⚙️ Setup Instructions
 
-### Set Up Instructions
+1. Clone the repository:
+   ```bash
+   git clone <repo-url>
+   cd nxt-trendz-app
+Install dependencies:
 
-<details>
-<summary>Click to view</summary>
+bash
+Copy
+Edit
+npm install
+Start the app:
 
-- Download dependencies by running `npm install`
-- Start up the app using `npm start`
-</details>
+bash
+Copy
+Edit
+npm start
+🔐 Login Credentials
+User Type	Username	Password
+Prime User	rahul	rahul@2021
+Non-Prime User	raja	raja@2021
 
-### Completion Instructions
+🧠 Features
+🔐 Authentication
+Users must log in to access /products/:id and /cart
 
-<details>
-<summary>Functionality to be added</summary>
-<br/>
+Redirects unauthenticated users to the /login page
 
-The app must have the following functionalities
+🛍️ Product Details Page (/products/:id)
+Fetch product details via API
 
-- When an unauthenticated user tries to access the **Cart** Route, then the page should be navigated to **Login** Route
+Show loading spinner while fetching
 
-- Following are the features to be implemented
+Render product details with quantity control
 
-  - Feature 1
+Handle 404/failure view with "Continue Shopping" button
 
-    - When an authenticated user tries to add the same product multiple times
-      - The quantity of the product should be updated accordingly, and the count of the cart items in the header should be remained same
+Icons: BsPlusSquare, BsDashSquare (from react-icons)
 
-  - Feature 2
+Alt text for image: set to product title
 
-    - The total amount and number of items in the cart should be displayed in the **Cart** Route
+🛒 Cart Features (/cart)
+Cart is managed using Context API (CartContext)
 
-  - Feature 3
+Each item includes:
 
-    - In each cart item in the cart
-      - When the plus icon is clicked, then the quantity of the product should be incremented by one
-      - When the minus icon is clicked, then the quantity of the product should be decremented by one
-      - When the quantity of the product is one and the minus icon is clicked, then the respective product should be removed from the cart
-      - Based on the quantity of the product, the product price and the Cart Summary, i.e the total cost should be updated accordingly
+Image, title, brand, quantity, total price
 
-  - Feature 4
+Increment and decrement buttons (data-testid: plus, minus)
 
-    - When an authenticated user clicks on the remove button, cart item should be removed from the cart list
+Remove button (data-testid: remove) using AiFillCloseCircle
 
-  - Feature 5
+Cart summary with total items and cost
 
-    - When an authenticated user clicks on the **Remove All** button, all the cart items should be removed from the cart and [Empty Cart View](https://assets.ccbp.in/frontend/content/react-js/nxt-trendz-cart-features-empty-cart-view.png) should be displayed
+"Remove All" button to clear the cart and show empty view
 
-- The `CartContext` has an object as a value with the following properties
-  - `cartList` - this key stores the cart items
-  - `removeAllCartItems` - this method is used to remove all the cart items in the `cartList`
-  - `addCartItem` - this method adds the cart item to the `cartList`
-  - `removeCartItem` - this method removes the cart item from the `cartList`
-  - `incrementCartItemQuantity` - this method increases the quantity of a product in the `cartList`
-  - `decrementCartItemQuantity` - this method decreases the quantity of a product in the `cartList`
+CartContext provides:
+js
+Copy
+Edit
+{
+  cartList,
+  addCartItem,
+  removeCartItem,
+  removeAllCartItems,
+  incrementCartItemQuantity,
+  decrementCartItemQuantity
+}
+🧱 Components Breakdown
+css
+Copy
+Edit
+src/
+├── App.js
+├── components/
+│   ├── Login/
+│   ├── Header/
+│   ├── ProductItemDetails/
+│   ├── Cart/
+│   ├── CartItem/
+│   ├── CartSummary/
+│   ├── NotFound/
+│   └── ProtectedRoute/
+🎨 UI Resources
+Colors
+Color	Hex
+Primary Blue	#0b69ff
+Dark Blue	#171f46
+Gray	#616e7c
+White	#ffffff
 
-</details>
+Fonts
+Roboto
 
-<details>
-<summary>Components Structure</summary>
+🛠️ Tech Stack
+React JS
 
-<br/>
-<div style="text-align: center;">
-    <img src="https://assets.ccbp.in/frontend/content/react-js/nxt-trendz-cart-features-component-structure-breakdown.png" alt="component structure breakdown" style="max-width:100%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
-</div>
-<br/>
+React Router
 
-</details>
+React Context API
 
-<details>
-<summary>Implementation Files</summary>
-<br/>
+React Icons
 
-Use these files to complete the implementation:
+CSS Modules
 
-- `src/App.js`
-- `src/components/Cart/index.js`
-- `src/components/Cart/index.css`
-- `src/components/CartItem/index.js`
-- `src/components/CartItem/index.css`
-- `src/components/CartSummary/index.js`
-- `src/components/CartSummary/index.css`
-</details>
+📝 Notes
+All components must be placed inside src/components
 
-### Quick Tips
+Component and file names should not be changed
 
-<details>
-<summary>Click to view</summary>
-<br>
+Use data-testid attributes correctly for testing
 
-- The `line-height` CSS property sets the height of a line box. It's commonly used to set the distance between lines of text
+Responsive design should be maintained
 
-  ```
-  line-height: 1.5;
-  ```
+Follow proper alt text and semantic HTML
 
-    <br/>
-    <img src="https://assets.ccbp.in/frontend/react-js/line-height-img.png" alt="line height" style="width:90%; max-width: 600px;"/>
+✅ Completion Checklist
+ Product Details fetched with auth
 
-- The array method `find()` returns the first item's value that satisfies the provided testing function. If no item is found, it returns `undefined`
+ Cart page protected route
 
-  **Syntax**: `arr.find(Testing Function)`
+ Increment/decrement cart quantity
 
-</details>
+ Remove individual cart items
 
-### Important Note
+ Remove all cart items
 
-<details>
-<summary>Click to view</summary>
+ Cart summary reflects totals
 
-<br/>
-
-**The following instructions are required for the tests to pass**
-
-- `BsPlusSquare`, `BsDashSquare` icons from `react-icons` should be used for **plus** and **minus** buttons in cart item
-- The Cart Item should consist of two HTML button elements with data-testid attribute values as **plus** and **minus** respectively
-- `AiFillCloseCircle` icon from react-icons should be used for **remove** button in cartItem
-- The Cart Item should consist of an HTML button element with data-testid attribute values as **remove**
-- The product image in **Cart Item** Route should have the alt as `title` of the product
-
-- Prime User credentials
-
-  ```text
-   username: rahul
-   password: rahul@2021
-  ```
-
-- Non-Prime User credentials
-
-  ```text
-   username: raja
-   password: raja@2021
-  ```
-
-</details>
-
-### Resources
-
-<details>
-<summary>Colors</summary>
-
-<br/>
-
-<div style="background-color: #0b69ff; width: 150px; padding: 10px; color: white">Hex: #0b69ff</div>
-<div style="background-color: #171f46; width: 150px; padding: 10px; color: white">Hex: #171f46</div>
-<div style="background-color: #616e7c; width: 150px; padding: 10px; color: white">Hex: #616e7c</div>
-<div style="background-color: #ffffff; width: 150px; padding: 10px; color: black">Hex: #ffffff</div>
-
-</details>
-
-<details>
-<summary>Font-families</summary>
-
-- Roboto
-
-</details>
-
-> ### _Things to Keep in Mind_
->
-> - All components you implement should go in the `src/components` directory.
-> - Don't change the component folder names as those are the files being imported into the tests.
-> - **Do not remove the pre-filled code**
-> - Want to quickly review some of the concepts you’ve been learning? Take a look at the Cheat Sheets.
+ UI matches design across screen sizes
